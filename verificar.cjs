@@ -1,0 +1,12 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const html = fs.readFileSync('index.html', 'utf8');
+for (const [, code] of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) new Function(code);
+for (const [, path] of html.matchAll(/(?:src|href)="((?:img|js)\/[^\"]+)"/g)) assert.ok(fs.existsSync(path), path);
+const date = html.match(/var abreSola = (Date.UTC\([^)]*\))/)[1];
+assert.equal(new Function('return ' + date)(), Date.parse('2026-10-30T20:00:00-05:00'));
+assert.ok(html.includes("setInterval(function () { if (!florAbierta && Date.now() >= abreSola)"));
+const waCode = html.match(/function wa\(t\) \{[^}]+\}/)[0];
+const wa = new Function('config', waCode + '; return wa;')({whatsapp: '+505 1234 5678'});
+assert.equal(wa('Hola 💛'), 'https://wa.me/50512345678?text=' + encodeURIComponent('Hola 💛'));
+console.log('OK: sintaxis, archivos locales, fecha de Bogotá y enlace WhatsApp.');
