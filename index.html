@@ -9,6 +9,15 @@
 <meta property="og:description" content="Esto lo hice para ti con demasiado amor. 🌙">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b1220">
+<script>
+  // Evita que el navegador salte al ancla antes de que la página esté lista.
+  (function () {
+    if (location.hash !== '#tercera-flor') return;
+    window.CARO_QR_ENTRY = true;
+    document.documentElement.classList.add('qr-preparando');
+    history.replaceState(history.state, '', location.pathname + location.search);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,500&family=Figtree:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap">
@@ -39,6 +48,7 @@ body {
   overflow-x: clip; -webkit-font-smoothing: antialiased;
 }
 body.bloqueado { overflow: hidden; height: 100svh; }
+html.qr-preparando body { visibility: hidden; }
 img { max-width: 100%; display: block; }
 [hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; line-height: 1.08; text-wrap: balance; }
@@ -823,7 +833,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
       .add(function () { intro.hidden = true; entradaHero(); ScrollTrigger.refresh(); });
   }
   $('#sobre').addEventListener('click', abrirSobre);
-  var directo = location.hash === '#tercera-flor';
+  var directo = window.CARO_QR_ENTRY === true || location.hash === '#tercera-flor';
   if (directo) { abierto = true; intro.hidden = true; document.body.classList.remove('bloqueado'); }
 
   // Estado inicial del hero (oculto hasta abrir el sobre)
@@ -1075,7 +1085,8 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
     if (florAbierta) return; florAbierta = true; store('flor', '1');
     if (anim && !reduce) {
       pausaPetalos = true; document.body.classList.add('antes-flor');
-      setTimeout(function () { revelarFlor(true); pausaPetalos = false; document.body.classList.remove('antes-flor'); }, 1200);
+      revelarFlor(true);
+      setTimeout(function () { pausaPetalos = false; document.body.classList.remove('antes-flor'); }, 700);
     } else revelarFlor(false);
   }
   function revelarFlor(anim) {
@@ -1083,7 +1094,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
     abrirFlorVisual(anim);
     if (anim) dispatchEvent(new Event('caro:flor'));
     // El avión depende sólo del scroll, también cuando la flor está abierta.
-    if (anim && G) G.fromTo('#sacar-carta', { y: 45, opacity: 0, rotate: 4 }, { y: 0, opacity: 1, rotate: -5, duration: 1.2, delay: 1.8, ease: 'back.out(1.2)' });
+    if (anim && G) G.fromTo('#sacar-carta', { y: 30, opacity: 0, rotate: 4 }, { y: 0, opacity: 1, rotate: -5, duration: .8, delay: .35, ease: 'back.out(1.2)' });
     medirHistoria(); if (G) ScrollTrigger.refresh();
   }
   var cartaSacada = false;
@@ -1121,11 +1132,19 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
   }
   avanzarViaje(); addEventListener('scroll', avanzarViaje, { passive: true }); addEventListener('resize', avanzarViaje);
   function revisarFlor() {
-    if (location.hash === '#tercera-flor') {
-      setTimeout(function () {
-        $('#tercera-flor').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-        setTimeout(function () { abrirFlor(true); }, 900);
-      }, 500);
+    if (window.CARO_QR_ENTRY === true) {
+      // Restaura el enlace visible sin disparar otro salto del navegador.
+      history.replaceState(history.state, '', location.pathname + location.search + '#tercera-flor');
+      requestAnimationFrame(function () {
+        var destino = $('#tercera-flor');
+        window.scrollTo(0, Math.max(0, window.scrollY + destino.getBoundingClientRect().top));
+        document.documentElement.classList.remove('qr-preparando');
+        abrirFlor(true);
+      });
+      window.CARO_QR_ENTRY = false;
+    } else if (location.hash === '#tercera-flor') {
+      // En una navegación dentro de la página, el propio navegador ya llegó al ancla.
+      abrirFlor(true);
     } else if (store('flor') === '1' || Date.now() >= abreSola) abrirFlor(false);
   }
   revisarFlor(); addEventListener('hashchange', revisarFlor);
