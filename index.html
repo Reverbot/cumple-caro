@@ -489,7 +489,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
         </g>
       </svg>
       <h3 class="r">Los <em>girasoles</em></h3>
-      <p class="r">El año pasado llegaron solos, en un día difícil. Tenías razón, unas flores no reemplazan una conversación. Por eso este año no te las mando, te las llevo yo.</p>
+      <p class="r">El año pasado llegaron solos, en un día difícil. Tenías razón, unas flores no reemplazan una conversación. Por eso quiero seguir escuchándote y estar pendiente de ti, linda.</p>
     </article>
 
     <article class="capitulo">
@@ -630,15 +630,15 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
   <section class="bloque col" id="vales-sec">
     <p class="eyebrow r">Canjeables cuando quieras</p>
     <h2 class="titulo r">Tus <em>vales</em></h2>
-    <p class="tenue r">Sirven estés donde estés. Abre WhatsApp, envíame el mensaje y después marca el vale como cobrado.</p>
+    <p class="tenue r">Para disfrutarlos juntos, linda. Abre WhatsApp, envíame el mensaje y después marca el vale como cobrado.</p>
     <div class="lista" id="lista-vales"></div>
   </section>
 
   <section class="bloque col viaje" id="viaje" aria-label="De Nicaragua a Bogotá">
     <div class="viaje-escena">
     <p class="eyebrow">Entre tú y yo</p>
-    <h2 class="titulo">Hay distancias que <em>se acortan</em></h2>
-    <p class="tenue">Una canción, una llamada, unas flores… siempre buscando cómo estar cerquita.</p>
+    <h2 class="titulo">El camino <em>hasta ti</em></h2>
+    <p class="tenue">Una canción, una llamada, unas flores… y ahora ya estoy en Bogotá, feliz de que nos vamos a ver.</p>
     <svg viewBox="0 0 500 200" aria-hidden="true">
       <path class="ruta-base" d="M55 130 C150 5 335 5 445 130"/>
       <path id="ruta-luz" d="M55 130 C150 5 335 5 445 130"/>
@@ -646,7 +646,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
       <g id="avion"><path d="M14 0 L-11 -10 L-6 -1 L-11 10 Z"/><path d="M-6 -1 L14 0 L-3 3" fill="none" stroke="#a57b35" stroke-width=".8"/></g>
       <text x="55" y="170" text-anchor="middle">NICARAGUA</text><text x="445" y="170" text-anchor="middle">BOGOTÁ</text>
     </svg>
-    <p id="llegada">De aquí… hasta ti 💛</p>
+    <p id="llegada">De Nicaragua… hasta ti 💛</p>
     </div>
   </section>
 
@@ -669,9 +669,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
       </g>
     </svg>
     <div id="flor-cerrada" class="lista" style="justify-items:center">
-      <p>Tú guardas las tarjetas que llegan con mis flores. Esta va a ser diferente.</p>
-      <p>Este final no se abre desde aquí linda.</p>
-      <p class="mano">Lo tengo yo 😏</p>
+      <p class="mano">¿Pensabas que eso era todo? Mmm… ya verás, linda 😏</p>
     </div>
     <div id="flor-abierta" hidden>
       <button class="tarjeta-regalo" id="sacar-carta" type="button" aria-expanded="false" aria-controls="carta-final"><span>Es para ti 💛</span><small>Toca para sacar tu carta</small></button>
@@ -689,7 +687,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
     </div>
   </section>
 
-  <footer>Hecho por mí desde Nicaragua, para mi vida en Bogotá ❤️</footer>
+  <footer>Hecho con demasiado amor, para mi vida ❤️</footer>
 </div>
 
 <dialog id="visor" class="visor" aria-label="Nuestros recuerdos" aria-describedby="visor-pie">
@@ -1030,13 +1028,13 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
 
   /* ---------- Vales ---------- */
   var vales = [
-    ['Noche de plancha', 'Yo hago la playlist y la escuchamos al mismo tiempo, cada uno con su vinito y sus cobijitas. Si estamos juntos, una sola cobija 😏'],
-    ['Cine por Meet', 'Tú escoges la película y yo no me quejo. Si ya la vi te aviso antes, ya aprendí con La Isla Siniestra jaja'],
+    ['Noche de plancha', 'Yo hago la playlist, tú pones el vinito y nos acomodamos bajo una sola cobija 😏'],
+    ['Noche de cine', 'Tú escoges la película y yo no me quejo. Si ya la vi te aviso antes, ya aprendí con La Isla Siniestra jaja'],
     ['Una semana de audios de buenos días', 'Antes de que te levantes, siete días seguidos. Con mi voz de recién despierto.'],
     ['Reto cero azúcar, 30 días', 'Yo también entro. El que pierda paga con besos.'],
-    ['30 besitos en el cuello', 'Se acumulan con intereses mientras estemos lejos. No se vencen nunca.'],
+    ['30 besitos en el cuello', 'Para cobrarlos despacito cuando nos veamos. No se vencen nunca.'],
     ['Una foto mía, la pose la escoges tú', 'Sin preguntas 😏'],
-    ['Una carta escrita a mano', 'Por correo de verdad, con estampilla y todo.']
+    ['Una carta escrita a mano', 'De mi puño y letra, para entregártela en persona.']
   ];
   var lista = $('#lista-vales');
   vales.forEach(function (v, i) {
@@ -1128,7 +1126,7 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
     var recorrido = Math.max(1, rect.height - innerHeight * .8);
     vuelo.progreso = Math.max(0, Math.min(1, (innerHeight * .1 - rect.top) / recorrido));
     dibujarVuelo();
-    $('#llegada').textContent = vuelo.progreso >= .99 ? 'Esta vez, la tarjeta vino conmigo 💛' : 'De aquí… hasta ti 💛';
+    $('#llegada').textContent = vuelo.progreso >= .99 ? 'Ya estoy en Bogotá, y me hace feliz que nos vamos a ver 💛' : 'De Nicaragua… hasta ti 💛';
   }
   avanzarViaje(); addEventListener('scroll', avanzarViaje, { passive: true }); addEventListener('resize', avanzarViaje);
   function revisarFlor() {
