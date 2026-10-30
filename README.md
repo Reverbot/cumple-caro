@@ -5,7 +5,7 @@ Página web interactiva para el cumpleaños de Caro (Linda Schiffmann), 30 de oc
 ## 📖 Descripción del Proyecto
 
 - **Inicio:** A las 00:00 del 30 de octubre (hora de Bogotá).
-- **Final interactivo ("La tercera flor"):** Se desbloquea con código QR o automáticamente a las 8:00 p. m. del 30 de octubre.
+- **Final interactivo ("La tercera flor"):** Se desbloquea únicamente al abrir el enlace del código QR de la tarjeta del ramo, sin apertura automática.
 - **Estructura:**
   - Sobre interactivo con sello de cera.
   - Ilustración de luna interactiva y animaciones estelares.

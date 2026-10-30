@@ -1080,9 +1080,9 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
       petalosF.forEach(function (o) { ponerPetalo(o, o.ang, 1); }); c.setAttribute('r', 22);
     }
   }
-  var abreSola = Date.UTC(2026, 9, 31, 1, 0, 0), florAbierta = false;
+  var florAbierta = false;
   function abrirFlor(anim) {
-    if (florAbierta) return; florAbierta = true; store('flor', '1');
+    if (florAbierta) return; florAbierta = true;
     if (anim && !reduce) {
       pausaPetalos = true; document.body.classList.add('antes-flor');
       revelarFlor(true);
@@ -1145,11 +1145,9 @@ body.antes-flor #flor-final { filter: drop-shadow(0 0 60px rgba(255,210,100,.8))
     } else if (location.hash === '#tercera-flor') {
       // En una navegación dentro de la página, el propio navegador ya llegó al ancla.
       abrirFlor(true);
-    } else if (store('flor') === '1' || Date.now() >= abreSola) abrirFlor(false);
+    }
   }
   revisarFlor(); addEventListener('hashchange', revisarFlor);
-  setInterval(function () { if (!florAbierta && Date.now() >= abreSola) abrirFlor(false); }, 1000);
-  document.addEventListener('visibilitychange', function () { if (!document.hidden && !florAbierta) revisarFlor(); });
 
   /* Fotos ampliables: teclado, cierre con Escape y retorno del foco. */
   var fotos = $$('.pol img'), visor = $('#visor'), fotoActual = 0, origenFoto = null;
